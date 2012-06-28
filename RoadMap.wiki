@@ -1,0 +1,16 @@
+#summary Road Map of upcoming releases
+
+= Introduction =
+
+This will detail the features/bug-fixes that will be included in upcoming releases.
+
+
+= 0.1 = 
+  * all critical bugs are fixed
+  * deployment script to create a generic .deb package
+
+= 0.2 = 
+  * web interface
+
+= 0.3 = 
+  * plugin architecture
