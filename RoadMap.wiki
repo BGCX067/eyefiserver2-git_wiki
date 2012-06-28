@@ -7,6 +7,7 @@ This will detail the features/bug-fixes that will be included in upcoming releas
 
 = 0.1 = 
   * all critical bugs are fixed
+  * geo-tagging
   * deployment script to create a generic .deb package
 
 = 0.2 = 
