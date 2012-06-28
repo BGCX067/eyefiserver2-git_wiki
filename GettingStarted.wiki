@@ -38,6 +38,8 @@ Download the *.rpm file and install using...
 
 == QNAP ==
 
+Download the *.qpkg file and install from QPKG center of your QNAP NAS server
+
 == Other ==
 
 Download the .tar.gz file
