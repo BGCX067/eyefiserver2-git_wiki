@@ -1,13 +1,43 @@
-#summary One-sentence summary of this page.
+= General information =
 
-= Introduction =
+Starting this server creates a listener on port 59278.
 
-Add your content here.
+eyefiserver2 is made up of 4 basic files:
+  * conf file: /etc/eyefiserver.conf
+  * startup script: /etc/init.d/eyefiserver
+  * script: /usr/local/bin/eyefiserver.py
+  * log file: /var/log/eyefiserver.log
 
+Structure of this package on the target filesystem:
+{{{
+        .
+        |-- etc
+        |   |-- eyefiserver.conf
+        |   `-- init.d
+        |       `-- eyefiserver
+        |-- usr
+        |   `-- local
+        |       `-- bin
+        |           `-- eyefiserver.py
+        `-- var
+            `-- log
+                `-- eyefiserver.log
+}}}     
 
-= Details =
+= Installing = 
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Debian ==
+Download the *.deb file and install using dpkg:
+{{{
+sudo dpkg -i eyefiserver2-0.1.deb
+}}}
+
+== RPM based systems ==
+
+Download the *.rpm file and install using...
+
+== QNAP ==
+
+== Other ==
+
+Download the .tar.gz file
