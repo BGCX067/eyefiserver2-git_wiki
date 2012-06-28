@@ -34,11 +34,11 @@ sudo dpkg -i eyefiserver2-0.1.deb
 
 == RPM based systems ==
 
-Download the *.rpm file and install using...
+Download the .rpm file and install using...
 
 == QNAP ==
 
-Download the *.qpkg file and install from QPKG center of your QNAP NAS server
+Download the .qpkg file and install from QPKG Center of your QNAP NAS server
 
 == Other ==
 
