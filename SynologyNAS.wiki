@@ -1,0 +1,96 @@
+#summary Installation procedure for a Synology NAS
+
+= Introduction =
+
+First for all, you should use the git version of eyefiserver2. The packages of the download page are not really up to date.
+
+The following gives details about the deployment of eyefiserver2 on a Synology NAS that runs DSM > 4.1.
+
+= Details =
+
+== Needed pagkages and services ==
+
+ * Enable ssh, in order to be able to deploy the script (Go to the "Terminal" icon in the configuration pannel)
+ * In the package center, install the Python package (currently it provides python > 2.7.1)
+
+== Deploying eyefiserver2 ==
+
+You should be able to connect to your DSM as root.
+
+ * Deploy the script eyefiserver.py and put it in /usr/local/bin
+
+{{{
+PC> scp eyefiserver.py root@fancy:/usr/local/bin
+
+DSM> cd /usr/local/bin
+DSM> chmod uog+x eyefiserver.py
+}}}
+
+  * Deploy the configuration file:
+
+{{{
+PC> scp eyefiserver.conf root@fancy:/etc
+}}}
+
+== Testing ==
+
+It is time to test the service, running:
+
+{{{
+DSM> /usr/local/bin/eyefiserver.py start /etc/eyefiserver.conf /var/log/eyefiserver.log
+}}}
+
+If the transfer is working, it's time to enable it as a service !
+
+== Service ==
+
+At http://forum.synology.com/enu/viewtopic.php?f=27&t=58193 the author shows how to monitor the process to kill it when stopping it. Nevertheless, the current version of eyefiserver.py already implements a starting and stopping procedure. Thus, a more simple script works fine:
+
+{{{
+#!/bin/sh
+
+case $1 in
+   start)
+      echo "Starting EyeFi server..."
+      python $eyefiserver start /etc/eyefiserver.conf /var/log/eyefiserver.log
+   ;;
+
+   stop)
+      echo "Stoping EyeFi server..."
+      python $eyefiserver stop /etc/eyefiserver.conf /var/log/eyefiserver.log
+   ;;
+
+   restart)
+      $0 stop
+      sleep 1
+      $0 start
+   ;;
+esac
+}}}
+
+ * Deploy it on the Synology NAS:
+
+{{{
+PC> scp S99EyeFiServer.sh root@fancy:/usr/local/etc/rc.d
+
+DSM> cd /usr/local/etc/rc.d
+chmod uog+x S99EyeFiServer.sh
+}}}
+
+Then stopping/starting should work:
+
+{{{
+/usr/local/etc/rc.d/S99EyeFiServer.sh stop
+Stoping EyeFi server...
+}}}
+(sometimes the stopping procedure does not finish, which is not so much problematic because the system will probably kill the procedure when the user halts the NAS)
+
+{{{
+/usr/local/etc/rc.d/S99EyeFiServer.sh start
+Starting EyeFi server...
+EyeFiServer started
+}}}
+
+== Disable SSH ==
+
+ * Disable SSH (security !), as it is not required anymore...
