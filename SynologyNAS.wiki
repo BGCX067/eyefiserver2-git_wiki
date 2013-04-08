@@ -15,12 +15,15 @@ The following gives details about the deployment of eyefiserver2 on a Synology N
 
 == Deploying eyefiserver2 ==
 
-You should be able to connect to your DSM as root.
+You should be able to connect to your DSM as root. In the following we suppose that:
+
+ * PC is your desktop
+ * DSM is your synology NAS
 
  * Deploy the script eyefiserver.py and put it in /usr/local/bin
 
 {{{
-PC> scp eyefiserver.py root@fancy:/usr/local/bin
+PC> scp eyefiserver.py root@DSM:/usr/local/bin
 
 DSM> cd /usr/local/bin
 DSM> chmod uog+x eyefiserver.py
@@ -29,7 +32,7 @@ DSM> chmod uog+x eyefiserver.py
   * Deploy the configuration file:
 
 {{{
-PC> scp eyefiserver.conf root@fancy:/etc
+PC> scp eyefiserver.conf root@DSM:/etc
 }}}
 
 == Testing ==
@@ -71,7 +74,7 @@ esac
  * Deploy it on the Synology NAS:
 
 {{{
-PC> scp S99EyeFiServer.sh root@fancy:/usr/local/etc/rc.d
+PC> scp S99EyeFiServer.sh root@DSM:/usr/local/etc/rc.d
 
 DSM> cd /usr/local/etc/rc.d
 chmod uog+x S99EyeFiServer.sh
